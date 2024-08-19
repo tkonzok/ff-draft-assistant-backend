@@ -20,7 +20,3 @@ primary_region = 'ams'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-
-[env]
-  DB_URI="mongodb+srv://admin:admin12345@cluster0.wsje9nm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-  DB_NAME="fantasy-rankings"

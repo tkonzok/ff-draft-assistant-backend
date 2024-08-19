@@ -15,7 +15,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       database: this.configService.get<string>("DB_NAME"),
       entities: [Player, Draft],
       useUnifiedTopology: true,
-      synchronize: true,
+      synchronize: false,
       autoLoadEntities: true,
     };
   }

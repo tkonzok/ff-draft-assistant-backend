@@ -8,17 +8,14 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   const configService = app.get(ConfigService);
-  const environment = configService.get<string>('NODE_ENV');
-  if (environment === 'development') {
-    const corsOptions: CorsOptions = {
-      origin: ['http://localhost:4200'],
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-      preflightContinue: false,
-      optionsSuccessStatus: 204,
-      credentials: true,
-    };
-    app.enableCors(corsOptions);
-  }
+  const corsOptions: CorsOptions = {
+    origin: ['http://localhost:4200', 'https://ff-draft-assistant.vercel.app/'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    credentials: true,
+  };
+  app.enableCors(corsOptions);
   await app.listen(3000);
 }
 bootstrap();

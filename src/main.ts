@@ -9,7 +9,7 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
   const corsOptions: CorsOptions = {
-    origin: ['http://localhost:4200', 'https://ff-draft-assistant.vercel.app/'],
+    origin: "*",
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,

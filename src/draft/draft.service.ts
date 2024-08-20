@@ -73,12 +73,9 @@ export class DraftService {
     if (!draft) {
       throw new NotFoundException(`Draft with id ${id} not found`);
     }
-    const players = await this.rankingService.getPlayers();
-    const playerStates: Record<string, PlayerStatus> = {};
-    players.forEach((player) => {
-      playerStates[player.id.toString()] = PlayerStatus.AVAILABLE;
+    Object.keys(draft.playerStates).forEach((key: string) => {
+      draft.playerStates[key] = PlayerStatus.AVAILABLE;
     });
-    Object.assign(draft, playerStates);
     return await this.draftRepository.save(draft);
   }
 

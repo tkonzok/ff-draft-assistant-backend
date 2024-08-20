@@ -35,7 +35,6 @@ export class DraftController {
     @Param("id") id: string,
     @Query("reset") reset: boolean,
   ) {
-    console.log(reset)
     if (reset) {
       const updatedDraft = await this.draftService.reset(id)
       return plainToInstance(DraftDto, updatedDraft, {

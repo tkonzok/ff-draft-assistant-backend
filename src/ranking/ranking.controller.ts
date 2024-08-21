@@ -19,6 +19,7 @@ import { UpdatePlayerRankingDto } from "./update-player-ranking.dto";
 import { dataHpprSf } from "../assets/rankings/data_hppr_sf";
 import { dataUpsidebowl1qb } from "../assets/rankings/data_upsidebowl_1qb";
 import { dataPpr1qb } from "../assets/rankings/data_ppr_1qb";
+import {dataArcadebowl} from "../assets/rankings/data_arcadebowl";
 
 @Controller("players")
 export class RankingController {
@@ -102,6 +103,8 @@ export class RankingController {
         return dataPpr1qb;
       case "upsidebowl1qb":
         return dataUpsidebowl1qb;
+      case "arcadebowl":
+        return dataArcadebowl;
       default:
         return undefined;
     }

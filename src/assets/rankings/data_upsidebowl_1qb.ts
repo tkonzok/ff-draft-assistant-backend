@@ -43,7 +43,7 @@ export const dataUpsidebowl1qb: string =
   "41,WR,WR24,5,Malik Nabers,NYG,wk11\n" +
   "42,TE,TE2,1,Sam LaPorta,DET,wk5\n" +
   "43,RB,RB14,3,James Cook,BUF,wk12\n" +
-  "44,WR,WR25,5,Keenan Allen,CHI,wk7\n" +
+  "44,WR,WR25,5,Rashee Rice,KC,wk6\n" +
   "45,QB,QB4,1,C.J. Stroud,HOU,wk14\n" +
   "46,WR,WR26,5,Michael Pittman,IND,wk14\n" +
   "47,TE,TE3,1,Mark Andrews,BAL,wk14\n" +
@@ -62,27 +62,27 @@ export const dataUpsidebowl1qb: string =
   "60,TE,TE5,2,Dalton Kincaid,BUF,wk12\n" +
   "61,TE,TE6,2,Kyle Pitts,ATL,wk12\n" +
   "62,RB,RB18,4,Rhamondre Stevenson,NE,wk14\n" +
-  "63,WR,WR33,7,Rashee Rice,KC,wk6\n" +
+  "63,WR,WR33,7,Keenan Allen,CHI,wk7\n" +
   "64,WR,WR34,7,Stefon Diggs,HOU,wk14\n" +
   "65,WR,WR35,7,Terry McLaurin,WSH,wk14\n" +
-  "66,WR,WR36,7,Courtland Sutton,DEN,wk14\n" +
+  "66,WR,WR36,7,Xavier Worthy,KC,wk6\n" +
   "67,RB,RB19,4,Aaron Jones,MIN,wk6\n" +
   "68,TE,TE7,2,George Kittle,SF,wk9\n" +
-  "69,WR,WR37,7,Jordan Addison,MIN,wk6\n" +
-  "70,WR,WR38,7,Ladd McConkey,LAC,wk6\n" +
-  "71,RB,RB20,4,Kenneth Walker,SEA,wk10\n" +
+  "69,WR,WR37,7,Calvin Ridley,TEN,wk5\n" +
+  "70,WR,WR38,7,Jordan Addison,MIN,wk6\n" +
+  "71,RB,RB20,4,Raheem Mostert,MIA,wk6\n" +
   "72,RB,RB21,4,James Conner,ARI,wk11\n" +
   "73,RB,RB22,4,Najee Harris,PIT,wk9\n" +
-  "74,RB,RB23,4,Raheem Mostert,MIA,wk6\n" +
-  "75,RB,RB24,4,Zamir White,LV,wk10\n" +
+  "74,RB,RB23,4,Kenneth Walker,SEA,wk10\n" +
+  "75,RB,RB24,4,D'Andre Swift,CHI,wk7\n" +
   "76,TE,TE8,3,David Njoku,CLE,wk10\n" +
   "77,TE,TE9,3,Evan Engram,JAX,wk12\n" +
-  "78,WR,WR39,7,Xavier Worthy,KC,wk6\n" +
+  "78,WR,WR39,7,Ladd McConkey,LAC,wk6\n" +
   "79,QB,QB7,2,Dak Prescott,DAL,wk7\n" +
   "80,QB,QB8,2,Lamar Jackson,BAL,wk14\n" +
   "81,RB,RB25,4,Jaylen Warren,PIT,wk9\n" +
-  "82,RB,RB26,5,Jerome Ford,CLE,wk10\n" +
-  "83,WR,WR40,7,Calvin Ridley,TEN,wk5\n" +
+  "82,RB,RB26,5,Zamir White,LV,wk10\n" +
+  "83,WR,WR40,7,Courtland Sutton,DEN,wk14\n" +
   "84,WR,WR41,8,Joshua Palmer,LAC,wk6\n" +
   "85,WR,WR42,8,Christian Watson,GB,wk10\n" +
   "86,WR,WR43,8,Jayden Reed,GB,wk10\n" +
@@ -91,20 +91,20 @@ export const dataUpsidebowl1qb: string =
   "89,QB,QB9,2,Kyler Murray,ARI,wk11\n" +
   "90,TE,TE10,3,Jake Ferguson,DAL,wk7\n" +
   "91,RB,RB27,5,Javonte Williams,DEN,wk14\n" +
-  "92,RB,RB28,5,D'Andre Swift,CHI,wk7\n" +
+  "92,RB,RB28,5,Jerome Ford,CLE,wk10\n" +
   "93,WR,WR46,8,Rashid Shaheed,NO,wk12\n" +
-  "94,WR,WR47,9,Jaxon Smith-Njigba,SEA,wk10\n" +
+  "94,WR,WR47,9,Rome Odunze,CHI,wk7\n" +
   "95,QB,QB10,2,Brock Purdy,SF,wk9\n" +
-  "96,RB,RB29,5,Brian Robinson,WSH,wk14\n" +
+  "96,RB,RB29,5,Gus Edwards,LAC,wk6\n" +
   "97,QB,QB11,3,Tua Tagovailoa,MIA,wk6\n" +
   "98,QB,QB12,3,Jared Goff,DET,wk5\n" +
   "99,QB,QB13,3,Anthony Richardson,IND,wk14\n" +
-  "100,WR,WR48,9,Marquise Brown,KC,wk6\n" +
-  "101,WR,WR49,9,DeAndre Hopkins,TEN,wk5\n" +
+  "100,WR,WR48,9,Jaxon Smith-Njigba,SEA,wk10\n" +
+  "101,WR,WR49,9,Marquise Brown,KC,wk6\n" +
   "102,TE,TE11,4,Brock Bowers,LV,wk10\n" +
-  "103,WR,WR50,9,Rome Odunze,CHI,wk7\n" +
-  "104,RB,RB30,5,Gus Edwards,LAC,wk6\n" +
-  "105,RB,RB31,5,Devin Singletary,NYG,wk11\n" +
+  "103,WR,WR50,9,DeAndre Hopkins,TEN,wk5\n" +
+  "104,RB,RB30,5,Devin Singletary,NYG,wk11\n" +
+  "105,RB,RB31,5,Brian Robinson,WSH,wk14\n" +
   "106,RB,RB32,6,Tyjae Spears,TEN,wk5\n" +
   "107,WR,WR51,9,Brian Thomas,JAX,wk12\n" +
   "108,TE,TE12,4,Dallas Goedert,PHI,wk5\n" +
@@ -116,7 +116,7 @@ export const dataUpsidebowl1qb: string =
   "114,WR,WR52,9,Dontayvion Wicks,GB,wk10\n" +
   "115,WR,WR53,9,Mike Williams,NYJ,wk12\n" +
   "116,WR,WR54,10,Adonai Mitchell,IND,wk14\n" +
-  "117,WR,WR55,10,Jahan Dotson,WSH,wk14\n" +
+  "117,WR,WR55,10,Jahan Dotson,PHI,wk5\n" +
   "118,RB,RB36,6,Tony Pollard,TEN,wk5\n" +
   "119,RB,RB37,6,Chuba Hubbard,CAR,wk11\n" +
   "120,RB,RB38,7,Austin Ekeler,WSH,wk14\n" +
@@ -152,10 +152,10 @@ export const dataUpsidebowl1qb: string =
   "150,RB,RB47,8,Jaleel McLaughlin,DEN,wk14\n" +
   "151,RB,RB48,8,Ray Davis,BUF,wk12\n" +
   "152,RB,RB49,8,Nick Chubb,CLE,wk10\n" +
-  "153,RB,RB50,8,Kimani Vidal,LAC,wk6\n" +
-  "154,RB,RB51,8,Antonio Gibson,NE,wk14\n" +
-  "155,RB,RB52,8,Khalil Herbert,CHI,wk7\n" +
-  "156,RB,RB53,8,Audric Estime,DEN,wk14\n" +
+  "153,RB,RB50,8,Tyrone Tracy,NYG,wk11\n" +
+  "154,RB,RB51,8,Kimani Vidal,LAC,wk6\n" +
+  "155,RB,RB52,8,Antonio Gibson,NE,wk14\n" +
+  "156,RB,RB53,8,Khalil Herbert,CHI,wk7\n" +
   "157,TE,TE17,6,Tyler Conklin,NYJ,wk12\n" +
   "158,TE,TE18,6,Dalton Schultz,HOU,wk14\n" +
   "159,TE,TE19,6,Jonnu Smith,MIA,wk6\n" +
@@ -165,8 +165,8 @@ export const dataUpsidebowl1qb: string =
   "163,WR,WR70,10,Jermaine Burton,CIN,wk12\n" +
   "164,QB,QB21,4,Geno Smith,SEA,wk10\n" +
   "165,QB,QB22,4,Deshaun Watson,CLE,wk10\n" +
-  "166,RB,RB54,8,Roschon Johnson,CHI,wk7\n" +
-  "167,RB,RB55,8,Tyrone Tracy,NYG,wk11\n" +
+  "166,RB,RB54,8,Audric Estime,DEN,wk14\n" +
+  "167,RB,RB55,8,Roschon Johnson,CHI,wk7\n" +
   "168,RB,RB56,8,Keaton Mitchell,BAL,wk14\n" +
   "169,RB,RB57,8,Jaylen Wright,MIA,wk6\n" +
   "170,QB,QB23,5,Baker Mayfield,TB,wk11\n" +
@@ -197,35 +197,35 @@ export const dataUpsidebowl1qb: string =
   "195,WR,WR78,10,Elijah Moore,CLE,wk10\n" +
   "196,WR,WR79,10,Jalin Hyatt,NYG,wk11\n" +
   "197,WR,WR80,10,Luke McCaffrey,WSH,wk14\n" +
-  "198,WR,QB30,6,Drake Maye,NE,wk14\n" +
-  "199,QB,TE24,7,Zach Ertz,WSH,wk14\n" +
-  "999,RB,RB66,8,J.K. Dobbins,LAC,wk6\n" +
-  "999,RB,RB67,8,Miles Sanders,CAR,wk11\n" +
-  "999,RB,RB68,8,AJ Dillon,GB,wk10\n" +
-  "999,RB,RB69,8,Jordan Mason,SF,wk9\n" +
-  "999,RB,RB70,8,Clyde Edwards-Helaire,KC,wk6\n" +
-  "999,RB,RB71,8,Elijah Mitchell,SF,wk9\n" +
-  "999,RB,RB72,8,Ty Chandler,MIN,wk6\n" +
-  "999,RB,RB73,8,Samaje Perine,DEN,wk14\n" +
-  "999,RB,RB74,8,Alexander Mattison,LV,wk10\n" +
-  "999,RB,RB75,8,Keilan Robinson,JAX,wk12\n" +
-  "999,RB,RB76,8,Dylan Laube,LV,wk10\n" +
-  "999,RB,RB77,8,Rasheen Ali,BAL,wk14\n" +
-  "999,TE,TE25,7,Noah Fant,SEA,wk10\n" +
-  "999,TE,TE26,7,Cade Otton,TB,wk11\n" +
-  "999,TE,TE27,7,T.J. Hockenson,MIN,wk6\n" +
-  "999,TE,TE28,7,Theo Johnson,NYG,wk11\n" +
-  "999,TE,TE29,7,JaTavion Sanders,CAR,wk11\n" +
-  "999,TE,TE30,7,Ben Sinnott,WSH,wk14\n" +
-  "999,TE,TE31,7,Isaiah Likely,BAL,wk14\n" +
-  "999,TE,TE32,7,Chigoziem Okonkwo,TEN,wk5\n" +
-  "999,TE,TE33,7,Juwan Johnson,NO,wk12\n" +
-  "999,TE,TE34,7,Will Dissly,LAC,wk6\n" +
-  "999,TE,TE35,7,Jelani Woods,IND,wk14\n" +
-  "999,TE,TE36,7,Davis Allen,LAR,wk5\n" +
-  "999,QB,QB31,6,Gardner Minshew,LV,wk10\n" +
-  "999,QB,QB32,6,Bo Nix,DEN,wk14\n" +
-  "999,QB,QB33,6,Justin Fields,PIT,wk9\n" +
-  "999,QB,QB34,6,Zach Wilson,DEN,wk14\n" +
-  "999,QB,QB35,6,Drew Lock,NYG,wk11\n" +
-  "999,QB,QB36,6,Jacoby Brissett,NE,wk14\n";
+  "198,QB,QB30,6,Drake Maye,NE,wk14\n" +
+  "199,TE,TE24,7,Zach Ertz,WSH,wk14\n" +
+  "200,TE,TE25,7,Noah Fant,SEA,wk10\n" +
+  "201,RB,RB66,8,J.K. Dobbins,LAC,wk6\n" +
+  "202,RB,RB67,8,Miles Sanders,CAR,wk11\n" +
+  "203,RB,RB68,8,AJ Dillon,GB,wk10\n" +
+  "204,RB,RB69,8,Jordan Mason,SF,wk9\n" +
+  "205,RB,RB70,8,Clyde Edwards-Helaire,KC,wk6\n" +
+  "206,RB,RB71,8,Elijah Mitchell,SF,wk9\n" +
+  "207,RB,RB72,8,Ty Chandler,MIN,wk6\n" +
+  "208,RB,RB73,8,Samaje Perine,DEN,wk14\n" +
+  "209,RB,RB74,8,Alexander Mattison,LV,wk10\n" +
+  "210,RB,RB75,8,Keilan Robinson,JAX,wk12\n" +
+  "211,RB,RB76,8,Dylan Laube,LV,wk10\n" +
+  "212,RB,RB77,8,Rasheen Ali,BAL,wk14\n" +
+  "213,QB,QB31,6,Gardner Minshew,LV,wk10\n" +
+  "214,QB,QB32,6,Bo Nix,DEN,wk14\n" +
+  "215,QB,QB33,6,Justin Fields,PIT,wk9\n" +
+  "216,QB,QB34,6,Zach Wilson,DEN,wk14\n" +
+  "217,QB,QB35,6,Drew Lock,NYG,wk11\n" +
+  "218,QB,QB36,6,Jacoby Brissett,NE,wk14\n" +
+  "219,TE,TE26,7,Cade Otton,TB,wk11\n" +
+  "220,TE,TE27,7,T.J. Hockenson,MIN,wk6\n" +
+  "221,TE,TE28,7,Theo Johnson,NYG,wk11\n" +
+  "222,TE,TE29,7,JaTavion Sanders,CAR,wk11\n" +
+  "223,TE,TE30,7,Ben Sinnott,WSH,wk14\n" +
+  "224,TE,TE31,7,Isaiah Likely,BAL,wk14\n" +
+  "225,TE,TE32,7,Chigoziem Okonkwo,TEN,wk5\n" +
+  "226,TE,TE33,7,Juwan Johnson,NO,wk12\n" +
+  "227,TE,TE34,7,Will Dissly,LAC,wk6\n" +
+  "228,TE,TE35,7,Jelani Woods,IND,wk14\n" +
+  "229,TE,TE36,7,Davis Allen,LAR,wk5\n";

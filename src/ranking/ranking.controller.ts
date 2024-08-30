@@ -20,6 +20,7 @@ import { dataHpprSf } from "../assets/rankings/data_hppr_sf";
 import { dataUpsidebowl1qb } from "../assets/rankings/data_upsidebowl_1qb";
 import { dataPpr1qb } from "../assets/rankings/data_ppr_1qb";
 import {dataArcadebowl} from "../assets/rankings/data_arcadebowl";
+import {dataWk1Ppr} from "../assets/rankings/data_wk1_ppr";
 
 @Controller("players")
 export class RankingController {
@@ -83,9 +84,9 @@ export class RankingController {
       return plainToInstance(UpdatePlayersDto, {
         id: player.id,
         name: player.name,
-        pos: player.pos,
-        team: player.team,
-        bye: player.bye,
+        ...(player.pos && { pos: player.pos }),
+        ...(player.team && { team: player.team }),
+        ...(player.bye && { bye: player.bye }),
         rankings: {
           [settings]: rankingData,
         },
@@ -105,6 +106,8 @@ export class RankingController {
         return dataUpsidebowl1qb;
       case "arcadebowl":
         return dataArcadebowl;
+      case "wk1ppr":
+        return dataWk1Ppr;
       default:
         return undefined;
     }

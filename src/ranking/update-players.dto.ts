@@ -9,6 +9,7 @@ export class UpdatePlayersDto {
   id?: string;
 
   @IsString()
+  @IsOptional()
   @Expose()
   pos: string;
 
@@ -17,10 +18,12 @@ export class UpdatePlayersDto {
   name: string;
 
   @IsString()
+  @IsOptional()
   @Expose()
   team: string;
 
   @IsString()
+  @IsOptional()
   @Expose()
   bye: string;
 

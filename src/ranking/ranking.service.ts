@@ -36,6 +36,9 @@ export class RankingService {
 
         Object.assign(existingPlayer, {
           ...updatePlayerDto,
+          pos: updatePlayerDto.pos ?? existingPlayer.pos,
+          team: updatePlayerDto.team ?? existingPlayer.team,
+          bye: updatePlayerDto.bye ?? existingPlayer.bye,
           rankings: existingPlayer.rankings,
         });
 
@@ -43,6 +46,9 @@ export class RankingService {
       } else {
         const newPlayer: Player = {
           ...updatePlayerDto,
+          pos: updatePlayerDto.pos || "N/A",
+          team: updatePlayerDto.team || "N/A",
+          bye: updatePlayerDto.bye || "N/A",
           id: uuidv4(),
           rankings: updatePlayerDto.rankings || {},
         } as Player;
@@ -54,28 +60,6 @@ export class RankingService {
   }
 
   async update(updatePlayersDto: UpdatePlayersDto[]): Promise<Player[]> {
-    const playersToReturn: Player[] = [];
-
-    for (const dto of updatePlayersDto) {
-      let existingPlayer = await this.playerRepository.findOne({
-        where: { name: dto.name },
-      });
-      let playerToSave: Player;
-
-      if (existingPlayer) {
-        playerToSave = Object.assign(existingPlayer, dto);
-      } else {
-        playerToSave = this.playerRepository.create({
-          ...dto,
-          id: uuidv4(),
-          rankings: dto.rankings || {},
-        })
-      }
-
-      const savedPlayer = await this.playerRepository.save(playerToSave);
-      playersToReturn.push(savedPlayer);
-    }
-
-    return playersToReturn;
+    return this.create(updatePlayersDto)
   }
 }

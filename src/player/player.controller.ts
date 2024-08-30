@@ -1,21 +1,18 @@
 import {
   Controller,
   Get,
-  Put,
   Body,
-  Param,
-  Patch,
   Post,
   Query,
   Delete,
 } from "@nestjs/common";
-import { RankingService } from "./ranking.service";
-import { PlayerDto } from "./player.dto";
+import { PlayerService } from "./player.service";
+import { PlayerDto } from "./dtos/player.dto";
 import { plainToInstance } from "class-transformer";
-import { UpdatePlayersDto } from "./update-players.dto";
+import { UpdatePlayerDto } from "./dtos/update-player.dto";
 import { csvToJson } from "../utils/csv-to-json";
 import { dataHppr1qb } from "../assets/rankings/data_hppr_1qb";
-import { UpdatePlayerRankingDto } from "./update-player-ranking.dto";
+import { UpdateRankingDto } from "./dtos/update-ranking.dto";
 import { dataHpprSf } from "../assets/rankings/data_hppr_sf";
 import { dataUpsidebowl1qb } from "../assets/rankings/data_upsidebowl_1qb";
 import { dataPpr1qb } from "../assets/rankings/data_ppr_1qb";
@@ -23,12 +20,12 @@ import {dataArcadebowl} from "../assets/rankings/data_arcadebowl";
 import {dataWk1Ppr} from "../assets/rankings/data_wk1_ppr";
 
 @Controller("players")
-export class RankingController {
-  constructor(private readonly playersService: RankingService) {}
+export class PlayerController {
+  constructor(private readonly playersService: PlayerService) {}
 
   @Get()
-  async getPlayers() {
-    const players = await this.playersService.getPlayers();
+  async getAll() {
+    const players = await this.playersService.getAll();
     return plainToInstance(PlayerDto, players, {
       enableImplicitConversion: true,
     });
@@ -36,7 +33,7 @@ export class RankingController {
 
   @Post()
   async create(
-    @Body() body: UpdatePlayersDto[],
+    @Body() body: UpdatePlayerDto[],
     @Query("settings") settings: string,
   ) {
     const file = this.getFile(settings);
@@ -44,36 +41,22 @@ export class RankingController {
       return;
     }
     const plainData = csvToJson(file);
-    const updateData = await this.createOrUpdatePlayer(plainData, settings);
-    return this.playersService.create(updateData);
-  }
-
-  @Patch()
-  async update(
-    @Body() body: UpdatePlayersDto[],
-    @Query("settings") settings: string,
-  ) {
-    const file = this.getFile(settings);
-    if (!file) {
-      return;
-    }
-    const plainData = csvToJson(file);
-    const updateData = await this.createOrUpdatePlayer(plainData, settings);
-    return this.playersService.update(updateData);
+    const playersToUpdate = await this.createUpdatePlayerDtos(plainData, settings);
+    return this.playersService.create(playersToUpdate);
   }
 
   @Delete()
   async delete() {
-    await this.playersService.clearPlayers();
+    await this.playersService.clearAll();
   }
 
-  private async createOrUpdatePlayer(
+  private async createUpdatePlayerDtos(
     data: any[],
     settings: string,
-  ): Promise<UpdatePlayersDto[]> {
+  ): Promise<UpdatePlayerDto[]> {
     return data.map((player) => {
-      const rankingData: UpdatePlayerRankingDto = plainToInstance(
-        UpdatePlayerRankingDto,
+      const rankingData: UpdateRankingDto = plainToInstance(
+        UpdateRankingDto,
         {
           ovr: player.ovr,
           rank: player.rank,
@@ -81,7 +64,7 @@ export class RankingController {
         },
       );
 
-      return plainToInstance(UpdatePlayersDto, {
+      return plainToInstance(UpdatePlayerDto, {
         id: player.id,
         name: player.name,
         ...(player.pos && { pos: player.pos }),

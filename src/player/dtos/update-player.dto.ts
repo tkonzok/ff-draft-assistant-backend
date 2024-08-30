@@ -1,8 +1,8 @@
 import { IsOptional, IsString } from "class-validator";
 import { Expose } from "class-transformer";
-import { UpdatePlayerRankingDto } from "./update-player-ranking.dto";
+import { UpdateRankingDto } from "./update-ranking.dto";
 
-export class UpdatePlayersDto {
+export class UpdatePlayerDto {
   @IsString()
   @IsOptional()
   @Expose()
@@ -28,5 +28,5 @@ export class UpdatePlayersDto {
   bye: string;
 
   @Expose()
-  rankings: Record<string, UpdatePlayerRankingDto>;
+  rankings: Record<string, UpdateRankingDto>;
 }

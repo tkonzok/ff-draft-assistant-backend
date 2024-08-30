@@ -4,18 +4,18 @@ import { plainToInstance } from "class-transformer";
 import { validate } from "class-validator";
 import { ObjectId } from "mongodb";
 import { MongoRepository } from "typeorm";
-import { PlayerStatus } from "../ranking/player-status.enum";
-import { RankingService } from "../ranking/ranking.service";
-import { CreateDraftDto } from "./create-draft.dto";
+import { PlayerStatus } from "../player/player-status.enum";
+import { PlayerService } from "../player/player.service";
+import { CreateDraftDto } from "./dtos/create-draft.dto";
 import { Draft } from "./draft.entity";
-import { UpdateDraftDto } from "./update-draft.dto";
+import { UpdateDraftDto } from "./dtos/update-draft.dto";
 
 @Injectable()
 export class DraftService {
   constructor(
     @InjectRepository(Draft)
     private readonly draftRepository: MongoRepository<Draft>,
-    private readonly rankingService: RankingService,
+    private readonly rankingService: PlayerService,
   ) {}
 
   async getAll(): Promise<Draft[]> {
@@ -23,7 +23,7 @@ export class DraftService {
   }
 
   async create(partialCreateDraftDto: Partial<CreateDraftDto>): Promise<Draft> {
-    const players = await this.rankingService.getPlayers();
+    const players = await this.rankingService.getAll();
     const playerStates: Record<string, PlayerStatus> = {};
     players.forEach((player) => {
       playerStates[player.id.toString()] = PlayerStatus.AVAILABLE;
@@ -50,22 +50,6 @@ export class DraftService {
       },
     });
     return await this.draftRepository.save(draft);
-  }
-
-  async updatePlayerIds(oldId: string, newId: string): Promise<void> {
-    const drafts = await this.draftRepository.find();
-    const updatedDrafts = drafts.map((draft) => {
-      if (!draft) {
-        throw new NotFoundException(`Draft with id ${draft.id} not found`);
-      }
-      if (draft.playerStates[oldId] === undefined) {
-        throw new NotFoundException(`Player state with id ${oldId} not found in draft`);
-      }
-      draft.playerStates[newId] = draft.playerStates[oldId];
-      delete draft.playerStates[oldId];
-      return draft;
-    })
-    await this.draftRepository.save(updatedDrafts);
   }
 
   async reset(id: string): Promise<Draft> {

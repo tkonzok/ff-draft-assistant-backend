@@ -1,12 +1,12 @@
 import {
-  BadRequestException, Body,
-  Controller, Delete, Get, Param, Post, Put, Query,
+  Body,
+  Controller, Delete, Get, Param, Post, Put,
 } from "@nestjs/common";
 import {DraftService} from "./draft.service";
 import {plainToInstance} from "class-transformer";
-import {DraftDto} from "./draft.dto";
-import {UpdateDraftDto} from "./update-draft.dto";
-import {CreateDraftDto} from "./create-draft.dto";
+import {DraftDto} from "./dtos/draft.dto";
+import {UpdateDraftDto} from "./dtos/update-draft.dto";
+import {CreateDraftDto} from "./dtos/create-draft.dto";
 
 @Controller("drafts")
 export class DraftController {
@@ -30,17 +30,14 @@ export class DraftController {
     })
   }
 
-  @Post(":id")
+  @Put(":id/reset")
   async reset(
     @Param("id") id: string,
-    @Query("reset") reset: boolean,
   ) {
-    if (reset) {
-      const updatedDraft = await this.draftService.reset(id)
-      return plainToInstance(DraftDto, updatedDraft, {
-        enableImplicitConversion: true,
-      });
-    }
+    const updatedDraft = await this.draftService.reset(id);
+    return plainToInstance(DraftDto, updatedDraft, {
+      enableImplicitConversion: true,
+    });
   }
 
   @Put(":id")

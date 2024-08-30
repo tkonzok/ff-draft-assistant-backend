@@ -1,26 +1,26 @@
 import { Injectable } from "@nestjs/common";
 import { Player } from "./player.entity";
-import { UpdatePlayersDto } from "./update-players.dto";
+import { UpdatePlayerDto } from "./dtos/update-player.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { MongoRepository } from "typeorm";
 import { v4 as uuidv4 } from "uuid";
 
 @Injectable()
-export class RankingService {
+export class PlayerService {
   constructor(
     @InjectRepository(Player)
     private readonly playerRepository: MongoRepository<Player>,
   ) {}
 
-  async getPlayers(): Promise<Player[]> {
+  async getAll(): Promise<Player[]> {
     return this.playerRepository.find();
   }
 
-  async clearPlayers(): Promise<void> {
+  async clearAll(): Promise<void> {
     await this.playerRepository.delete({});
   }
 
-  async create(updatePlayersDto: UpdatePlayersDto[]): Promise<Player[]> {
+  async create(updatePlayersDto: UpdatePlayerDto[]): Promise<Player[]> {
     const playersToSave: Player[] = [];
 
     for (const updatePlayerDto of updatePlayersDto) {
@@ -57,9 +57,5 @@ export class RankingService {
     }
     await this.playerRepository.save(playersToSave);
     return playersToSave;
-  }
-
-  async update(updatePlayersDto: UpdatePlayersDto[]): Promise<Player[]> {
-    return this.create(updatePlayersDto)
   }
 }

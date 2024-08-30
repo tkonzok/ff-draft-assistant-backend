@@ -6,7 +6,7 @@ import {
   IsOptional,
   IsObject,
 } from "class-validator";
-import {PlayerStatus} from "../ranking/player-status.enum";
+import {PlayerStatus} from "../../player/player-status.enum";
 
 export class DraftDto {
   @Expose()

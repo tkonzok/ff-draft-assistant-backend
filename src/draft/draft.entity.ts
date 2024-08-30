@@ -1,6 +1,6 @@
 import {Column, Entity, ObjectIdColumn} from "typeorm";
 import {ObjectId} from "mongodb";
-import {PlayerStatus} from "../ranking/player-status.enum";
+import {PlayerStatus} from "../player/player-status.enum";
 
 @Entity()
 export class Draft {

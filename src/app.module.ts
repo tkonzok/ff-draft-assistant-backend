@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
-import { RankingModule } from "./ranking/ranking.module";
+import { PlayerModule } from "./player/player.module";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { TypeOrmConfigService } from "./config/typeorm.config";
@@ -15,7 +15,7 @@ import {DraftModule} from "./draft/draft.module";
       inject: [ConfigService],
       useClass: TypeOrmConfigService,
     }),
-    RankingModule,
+    PlayerModule,
     DraftModule,
   ],
   controllers: [AppController],

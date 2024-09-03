@@ -4,6 +4,7 @@ import { UpdatePlayerDto } from "./dtos/update-player.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { MongoRepository } from "typeorm";
 import { v4 as uuidv4 } from "uuid";
+import {SettingsDto} from "./dtos/settings.dto";
 
 @Injectable()
 export class PlayerService {
@@ -16,7 +17,7 @@ export class PlayerService {
     return this.playerRepository.find();
   }
 
-  async getSettings(): Promise<string[]> {
+  async getSettings(): Promise<{settings: string[]}> {
     const players = await this.getAll();
     const allSettings = new Set<string>();
     players.forEach((player) => {
@@ -24,7 +25,7 @@ export class PlayerService {
         allSettings.add(setting)
       })
     })
-    return Array.from(allSettings)
+    return {settings: Array.from(allSettings)}
   }
 
   async clearAll(): Promise<void> {

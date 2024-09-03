@@ -1,9 +1,16 @@
-import {Expose} from "class-transformer";
-import {IsArray, IsNotEmpty} from "class-validator";
+import { Expose, Type } from "class-transformer";
+import { IsObject, ValidateNested, IsArray, IsString } from "class-validator";
 
 export class SettingsDto {
   @Expose()
-  @IsNotEmpty()
+  @IsObject()
+  @ValidateNested({ each: true })
+  @Type(() => SettingsArrayDto)
+  settings: Record<string, SettingsArrayDto>;
+}
+
+export class SettingsArrayDto {
   @IsArray()
-  settings: string[];
+  @IsString({ each: true })
+  values: string[];
 }

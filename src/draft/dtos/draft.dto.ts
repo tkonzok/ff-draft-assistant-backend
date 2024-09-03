@@ -1,9 +1,7 @@
-import { Expose, Type } from "class-transformer";
+import { Expose } from "class-transformer";
 import {
   IsNotEmpty,
   IsString,
-  ValidateNested,
-  IsOptional,
   IsObject,
 } from "class-validator";
 import {PlayerStatus} from "../../player/player-status.enum";

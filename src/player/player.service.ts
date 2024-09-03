@@ -16,6 +16,17 @@ export class PlayerService {
     return this.playerRepository.find();
   }
 
+  async getSettings(): Promise<string[]> {
+    const players = await this.getAll();
+    const allSettings = new Set<string>();
+    players.forEach((player) => {
+      Object.keys(player.rankings).forEach((setting) => {
+        allSettings.add(setting)
+      })
+    })
+    return Array.from(allSettings)
+  }
+
   async clearAll(): Promise<void> {
     await this.playerRepository.delete({});
   }

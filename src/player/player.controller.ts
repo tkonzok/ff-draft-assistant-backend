@@ -18,6 +18,8 @@ import { dataUpsidebowl1qb } from "../assets/rankings/data_upsidebowl_1qb";
 import { dataPpr1qb } from "../assets/rankings/data_ppr_1qb";
 import {dataArcadebowl} from "../assets/rankings/data_arcadebowl";
 import {dataWk1Ppr} from "../assets/rankings/data_wk1_ppr";
+import {dataWk2Ppr} from "../assets/rankings/data_wk2_ppr";
+import {SettingsDto} from "./dtos/settings.dto";
 
 @Controller("players")
 export class PlayerController {
@@ -29,6 +31,12 @@ export class PlayerController {
     return plainToInstance(PlayerDto, players, {
       enableImplicitConversion: true,
     });
+  }
+
+  @Get("settings")
+  async getSettings() {
+    const settings = await this.playersService.getSettings();
+    return plainToInstance(SettingsDto, settings);
   }
 
   @Post()
@@ -91,6 +99,8 @@ export class PlayerController {
         return dataArcadebowl;
       case "wk1ppr":
         return dataWk1Ppr;
+      case "wk2ppr":
+        return dataWk2Ppr;
       default:
         return undefined;
     }

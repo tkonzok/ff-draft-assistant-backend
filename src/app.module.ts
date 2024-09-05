@@ -7,6 +7,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { TypeOrmConfigService } from "./config/typeorm.config";
 import {DraftModule} from "./draft/draft.module";
 import {SleeperPlayersModule} from "./sleeper/sleeper-players.module";
+import {ScheduleModule} from "./schedule/schedule.module";
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import {SleeperPlayersModule} from "./sleeper/sleeper-players.module";
     PlayerModule,
     DraftModule,
     SleeperPlayersModule,
+    ScheduleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

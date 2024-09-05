@@ -4,6 +4,7 @@ import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from "@nestjs/typeorm";
 import { Draft } from "../draft/draft.entity";
 import { Player } from "../player/player.entity";
 import {SleeperPlayer} from "../sleeper/sleeper-player.entity";
+import {Schedule} from "../schedule/schedule.entity";
 
 @Injectable()
 export class TypeOrmConfigService implements TypeOrmOptionsFactory {
@@ -14,7 +15,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       type: "mongodb",
       url: this.configService.get<string>("DB_URI"),
       database: this.configService.get<string>("DB_NAME"),
-      entities: [Player, Draft, SleeperPlayer],
+      entities: [Player, Draft, SleeperPlayer, Schedule],
       useUnifiedTopology: true,
       synchronize: false,
       autoLoadEntities: true,

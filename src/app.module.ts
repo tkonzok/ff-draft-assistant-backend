@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { TypeOrmConfigService } from "./config/typeorm.config";
 import {DraftModule} from "./draft/draft.module";
+import {SleeperPlayersModule} from "./sleeper/sleeper-players.module";
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import {DraftModule} from "./draft/draft.module";
     }),
     PlayerModule,
     DraftModule,
+    SleeperPlayersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

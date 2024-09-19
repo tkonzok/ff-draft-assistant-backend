@@ -14,4 +14,7 @@ export class Schedule {
 
   @Column()
   guestTeam: string;
+
+  @Column()
+  date: string;
 }

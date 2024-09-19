@@ -9,4 +9,7 @@ export class ScheduleDto {
 
   @IsString()
   guestTeam: string;
+
+  @IsString()
+  date: string;
 }

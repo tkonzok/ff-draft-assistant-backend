@@ -30,11 +30,13 @@ export class ScheduleService {
     const seasonData = data2024.concat(data2025).filter((game) => game.season.year === 2024 && game.season.slug === "regular-season")
     const scheduleData: ScheduleDto[] = seasonData.map((game) => {
       const week = game.week.number;
-      const teams = game.shortName.split(/[@]|VS/).map((team) => team.trim());
+      let teams = game.shortName.split(/[@]|VS/).map((team) => team.trim());
+      teams = teams.map((team) => team === "WSH" ? "WAS" : team)
       return {
         week,
         guestTeam: teams[0],
         homeTeam: teams[1],
+        date: game.date,
       };
     })
     scheduleData.map((game) => plainToInstance(ScheduleDto, game))

@@ -33,6 +33,7 @@ export class SleeperPlayersService {
         continue;
       }
       sleeperPlayerDto.player_id = playerId;
+      sleeperPlayerDto.team = sleeperPlayerDto.team === "WSH" ? "WAS" : sleeperPlayerDto.team
       const sleeperPlayer: SleeperPlayer = {...sleeperPlayerDto} as SleeperPlayer
       playersToSave.push(sleeperPlayer);
     }

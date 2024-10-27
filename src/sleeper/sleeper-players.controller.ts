@@ -15,6 +15,11 @@ export class SleeperPlayersController {
     });
   }
 
+  @Get("update")
+  async getUpdateAll() {
+    return this.sleeperPlayersService.updateAll();
+  }
+
   @Post("update")
   async updateAll() {
     return this.sleeperPlayersService.updateAll();

@@ -13,9 +13,9 @@ export class ScheduleController {
     return plainToInstance(ScheduleDto, schedule);
   }
 
-  @Post()
+  @Post("update")
   async uploadSchedule() {
-    await this.scheduleService.uploadSchedule()
+    return await this.scheduleService.uploadSchedule()
   }
 
   @Delete()

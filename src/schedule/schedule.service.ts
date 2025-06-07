@@ -23,11 +23,11 @@ export class ScheduleService {
 
   async uploadSchedule() {
     await this.clearAll();
-    const response2024 = await axios.get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?limit=1000&dates=2024");
-    const data2024: any[] = response2024.data.events;
     const response2025 = await axios.get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?limit=1000&dates=2025");
     const data2025: any[] = response2025.data.events;
-    const seasonData = data2024.concat(data2025).filter((game) => game.season.year === 2024 && game.season.slug === "regular-season")
+    const response2026 = await axios.get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?limit=1000&dates=2026");
+    const data2026: any[] = response2026.data.events;
+    const seasonData = data2025.concat(data2026).filter((game) => game.season.year === 2025 && game.season.slug === "regular-season")
     const scheduleData: ScheduleDto[] = seasonData.map((game) => {
       const week = game.week.number;
       let teams = game.shortName.split(/[@]|VS/).map((team) => team.trim());

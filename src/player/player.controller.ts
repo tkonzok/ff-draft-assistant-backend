@@ -14,11 +14,6 @@ import { csvToJson } from "../utils/csv-to-json";
 import { dataHppr1qb } from "../assets/rankings/data_hppr_1qb";
 import { UpdateRankingDto } from "./dtos/update-ranking.dto";
 import { dataHpprSf } from "../assets/rankings/data_hppr_sf";
-import { dataUpsidebowl1qb } from "../assets/rankings/data_upsidebowl_1qb";
-import { dataPpr1qb } from "../assets/rankings/data_ppr_1qb";
-import {dataArcadebowl} from "../assets/rankings/data_arcadebowl";
-import {dataWk1Ppr} from "../assets/rankings/data_wk1_ppr";
-import {dataWk2Ppr} from "../assets/rankings/data_wk2_ppr";
 import {SettingsDto} from "./dtos/settings.dto";
 
 @Controller("players")
@@ -91,16 +86,8 @@ export class PlayerController {
         return dataHppr1qb;
       case "hpprSf":
         return dataHpprSf;
-      case "ppr1qb":
-        return dataPpr1qb;
-      case "upsidebowl1qb":
-        return dataUpsidebowl1qb;
-      case "arcadebowl":
-        return dataArcadebowl;
-      case "wk1ppr":
-        return dataWk1Ppr;
-      case "wk2ppr":
-        return dataWk2Ppr;
+      // case "upsidebowl1qb":
+      //   return dataUpsidebowl1qb;
       default:
         return undefined;
     }

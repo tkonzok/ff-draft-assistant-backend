@@ -14,6 +14,7 @@ import { csvToJson } from "../utils/csv-to-json";
 import { dataHppr1qb } from "../assets/rankings/data_hppr_1qb";
 import { UpdateRankingDto } from "./dtos/update-ranking.dto";
 import { dataHpprSf } from "../assets/rankings/data_hppr_sf";
+import { dataDynastySf } from "../assets/rankings/data_dynasty_sf";
 import {SettingsDto} from "./dtos/settings.dto";
 
 @Controller("players")
@@ -86,6 +87,8 @@ export class PlayerController {
         return dataHppr1qb;
       case "hpprSf":
         return dataHpprSf;
+      case "dynastySf":
+        return dataDynastySf;
       // case "upsidebowl1qb":
       //   return dataUpsidebowl1qb;
       default:

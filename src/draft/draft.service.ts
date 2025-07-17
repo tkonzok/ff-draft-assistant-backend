@@ -12,6 +12,8 @@ import { UpdateDraftDto } from "./dtos/update-draft.dto";
 
 @Injectable()
 export class DraftService {
+  private readonly history: Record<string, PlayerStatus>[] = [];
+
   constructor(
     @InjectRepository(Draft)
     private readonly draftRepository: MongoRepository<Draft>,
@@ -42,6 +44,11 @@ export class DraftService {
     if (!draft) {
       throw new NotFoundException(`Draft with id ${id} not found`);
     }
+    const key = Object.keys(updateDraftDto.playerStates)[0];
+    const currentPlayerState = draft.playerStates[key];
+    this.history.push({
+      [key]: currentPlayerState,
+    });
     Object.assign(draft, {
       ...updateDraftDto,
       playerStates: {
@@ -70,5 +77,21 @@ export class DraftService {
 
   async deleteAll(): Promise<void> {
     await this.draftRepository.delete({});
+  }
+
+  async undo(id: string): Promise<Draft> {
+    const draft = await this.draftRepository.findOneBy({ _id: new ObjectId(id) });
+    if (!draft) {
+      throw new NotFoundException(`Draft with id ${id} not found`);
+    }
+    if (this.history.length > 0) {
+      const lastEntry = this.history.pop();
+      if (lastEntry) {
+        for (const key of Object.keys(lastEntry)) {
+          draft.playerStates[key] = lastEntry[key];
+        }
+      }
+    }
+    return await this.draftRepository.save(draft);
   }
 }

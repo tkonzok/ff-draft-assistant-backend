@@ -30,6 +30,16 @@ export class DraftController {
     })
   }
 
+  @Post(":id/undo")
+  async undo(
+    @Param("id") id: string,
+  ) {
+    const updatedDraft = await this.draftService.undo(id);
+    return plainToInstance(DraftDto, updatedDraft, {
+      enableImplicitConversion: true,
+    });
+  }
+
   @Put(":id/reset")
   async reset(
     @Param("id") id: string,

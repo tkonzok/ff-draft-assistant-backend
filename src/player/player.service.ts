@@ -1,10 +1,10 @@
-import { Injectable } from "@nestjs/common";
-import { Player } from "./player.entity";
-import { UpdatePlayerDto } from "./dtos/update-player.dto";
-import { InjectRepository } from "@nestjs/typeorm";
-import { MongoRepository } from "typeorm";
-import { v4 as uuidv4 } from "uuid";
-import {SettingsDto} from "./dtos/settings.dto";
+import { Injectable } from '@nestjs/common';
+import { Player } from './player.entity';
+import { UpdatePlayerDto } from './dtos/update-player.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { MongoRepository } from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
+import { SettingsDto } from './dtos/settings.dto';
 
 @Injectable()
 export class PlayerService {
@@ -17,15 +17,15 @@ export class PlayerService {
     return this.playerRepository.find();
   }
 
-  async getSettings(): Promise<{settings: string[]}> {
+  async getSettings(): Promise<{ settings: string[] }> {
     const players = await this.getAll();
     const allSettings = new Set<string>();
     players.forEach((player) => {
       Object.keys(player.rankings).forEach((setting) => {
-        allSettings.add(setting)
-      })
-    })
-    return {settings: Array.from(allSettings)}
+        allSettings.add(setting);
+      });
+    });
+    return { settings: Array.from(allSettings) };
   }
 
   async clearAll(): Promise<void> {
@@ -37,8 +37,8 @@ export class PlayerService {
 
     for (const updatePlayerDto of updatePlayersDto) {
       const existingPlayer = await this.playerRepository.findOne({
-            where: { name: updatePlayerDto.name },
-          });
+        where: { name: updatePlayerDto.name },
+      });
 
       if (existingPlayer) {
         existingPlayer.rankings = {
@@ -58,9 +58,9 @@ export class PlayerService {
       } else {
         const newPlayer: Player = {
           ...updatePlayerDto,
-          pos: updatePlayerDto.pos || "N/A",
-          team: updatePlayerDto.team || "N/A",
-          bye: updatePlayerDto.bye || "N/A",
+          pos: updatePlayerDto.pos || 'N/A',
+          team: updatePlayerDto.team || 'N/A',
+          bye: updatePlayerDto.bye || 'N/A',
           id: uuidv4(),
           rankings: updatePlayerDto.rankings || {},
         } as Player;

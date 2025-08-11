@@ -1,23 +1,16 @@
-import {
-  Controller,
-  Get,
-  Body,
-  Post,
-  Query,
-  Delete,
-} from "@nestjs/common";
-import { PlayerService } from "./player.service";
-import { PlayerDto } from "./dtos/player.dto";
-import { plainToInstance } from "class-transformer";
-import { UpdatePlayerDto } from "./dtos/update-player.dto";
-import { csvToJson } from "../utils/csv-to-json";
-import { dataHppr1qb } from "../assets/rankings/data_hppr_1qb";
-import { UpdateRankingDto } from "./dtos/update-ranking.dto";
-import { dataHpprSf } from "../assets/rankings/data_hppr_sf";
-import { dataDynastySf } from "../assets/rankings/data_dynasty_sf";
-import {SettingsDto} from "./dtos/settings.dto";
+import { Controller, Get, Body, Post, Query, Delete } from '@nestjs/common';
+import { PlayerService } from './player.service';
+import { PlayerDto } from './dtos/player.dto';
+import { plainToInstance } from 'class-transformer';
+import { UpdatePlayerDto } from './dtos/update-player.dto';
+import { csvToJson } from '../utils/csv-to-json';
+import { dataHppr1qb } from '../assets/rankings/data_hppr_1qb';
+import { UpdateRankingDto } from './dtos/update-ranking.dto';
+import { dataHpprSf } from '../assets/rankings/data_hppr_sf';
+import { dataDynastySf } from '../assets/rankings/data_dynasty_sf';
+import { SettingsDto } from './dtos/settings.dto';
 
-@Controller("players")
+@Controller('players')
 export class PlayerController {
   constructor(private readonly playersService: PlayerService) {}
 
@@ -29,7 +22,7 @@ export class PlayerController {
     });
   }
 
-  @Get("settings")
+  @Get('settings')
   async getSettings() {
     const settings = await this.playersService.getSettings();
     return plainToInstance(SettingsDto, settings);
@@ -38,14 +31,17 @@ export class PlayerController {
   @Post()
   async create(
     @Body() body: UpdatePlayerDto[],
-    @Query("settings") settings: string,
+    @Query('settings') settings: string,
   ) {
     const file = this.getFile(settings);
     if (!file) {
       return;
     }
     const plainData = csvToJson(file);
-    const playersToUpdate = await this.createUpdatePlayerDtos(plainData, settings);
+    const playersToUpdate = await this.createUpdatePlayerDtos(
+      plainData,
+      settings,
+    );
     return this.playersService.create(playersToUpdate);
   }
 
@@ -59,14 +55,11 @@ export class PlayerController {
     settings: string,
   ): Promise<UpdatePlayerDto[]> {
     return data.map((player) => {
-      const rankingData: UpdateRankingDto = plainToInstance(
-        UpdateRankingDto,
-        {
-          ovr: player.ovr,
-          rank: player.rank,
-          tier: player.tier,
-        },
-      );
+      const rankingData: UpdateRankingDto = plainToInstance(UpdateRankingDto, {
+        ovr: player.ovr,
+        rank: player.rank,
+        tier: player.tier,
+      });
 
       return plainToInstance(UpdatePlayerDto, {
         id: player.id,
@@ -83,14 +76,22 @@ export class PlayerController {
 
   private getFile(settings: string) {
     switch (settings) {
-      case "hppr1qb":
+      case 'hppr1qb':
         return dataHppr1qb;
-      case "hpprSf":
+      case 'hpprSf':
         return dataHpprSf;
-      case "dynastySf":
+      case 'dynastySf':
         return dataDynastySf;
-      // case "upsidebowl1qb":
-      //   return dataUpsidebowl1qb;
+      // case "advanced1qb":
+      //   return dataAdvanced1qb;
+      // case "advanced1qbRecFlex":
+      //   return dataAdvanced1qbRecFlex;
+      // case "advancedSfRecFlex":
+      //   return dataAdvancedSfRecFlex;
+      // case "bestballPpr1qb":
+      //   return dataBestballPpr1qb;
+      // case "bestballAdvanced1qb":
+      //   return dataBestballPpr1qb;
       default:
         return undefined;
     }

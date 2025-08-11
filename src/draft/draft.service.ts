@@ -1,14 +1,18 @@
-import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { plainToInstance } from "class-transformer";
-import { validate } from "class-validator";
-import { ObjectId } from "mongodb";
-import { MongoRepository } from "typeorm";
-import { PlayerStatus } from "../player/player-status.enum";
-import { PlayerService } from "../player/player.service";
-import { CreateDraftDto } from "./dtos/create-draft.dto";
-import { Draft } from "./draft.entity";
-import { UpdateDraftDto } from "./dtos/update-draft.dto";
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { plainToInstance } from 'class-transformer';
+import { validate } from 'class-validator';
+import { ObjectId } from 'mongodb';
+import { MongoRepository } from 'typeorm';
+import { PlayerStatus } from '../player/player-status.enum';
+import { PlayerService } from '../player/player.service';
+import { CreateDraftDto } from './dtos/create-draft.dto';
+import { Draft } from './draft.entity';
+import { UpdateDraftDto } from './dtos/update-draft.dto';
 
 @Injectable()
 export class DraftService {
@@ -30,25 +34,32 @@ export class DraftService {
     players.forEach((player) => {
       playerStates[player.id.toString()] = PlayerStatus.AVAILABLE;
     });
-    const draftObject: Partial<CreateDraftDto> = { ...partialCreateDraftDto, playerStates };
+    const draftObject: Partial<CreateDraftDto> = {
+      ...partialCreateDraftDto,
+      playerStates,
+    };
     const fullCreateDraftDto = plainToInstance(CreateDraftDto, draftObject);
     const errors = await validate(fullCreateDraftDto);
     if (errors.length > 0) {
-      throw new BadRequestException("Validation failed");
+      throw new BadRequestException('Validation failed');
     }
     return await this.draftRepository.save(fullCreateDraftDto);
   }
 
   async update(id: string, updateDraftDto: UpdateDraftDto): Promise<Draft> {
-    const draft = await this.draftRepository.findOneBy({ _id: new ObjectId(id) });
+    const draft = await this.draftRepository.findOneBy({
+      _id: new ObjectId(id),
+    });
     if (!draft) {
       throw new NotFoundException(`Draft with id ${id} not found`);
     }
-    const key = Object.keys(updateDraftDto.playerStates)[0];
-    const currentPlayerState = draft.playerStates[key];
-    this.history.push({
-      [key]: currentPlayerState,
-    });
+    if (updateDraftDto.playerStates) {
+      const key = Object.keys(updateDraftDto.playerStates)[0];
+      const currentPlayerState = draft.playerStates[key];
+      this.history.push({
+        [key]: currentPlayerState,
+      });
+    }
     Object.assign(draft, {
       ...updateDraftDto,
       playerStates: {
@@ -60,7 +71,9 @@ export class DraftService {
   }
 
   async reset(id: string): Promise<Draft> {
-    const draft = await this.draftRepository.findOneBy({ _id: new ObjectId(id) });
+    const draft = await this.draftRepository.findOneBy({
+      _id: new ObjectId(id),
+    });
     if (!draft) {
       throw new NotFoundException(`Draft with id ${id} not found`);
     }
@@ -80,7 +93,9 @@ export class DraftService {
   }
 
   async undo(id: string): Promise<Draft> {
-    const draft = await this.draftRepository.findOneBy({ _id: new ObjectId(id) });
+    const draft = await this.draftRepository.findOneBy({
+      _id: new ObjectId(id),
+    });
     if (!draft) {
       throw new NotFoundException(`Draft with id ${id} not found`);
     }

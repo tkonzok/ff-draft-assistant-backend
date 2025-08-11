@@ -1,5 +1,5 @@
-import { Expose, Type } from "class-transformer";
-import { IsObject, ValidateNested, IsArray, IsString } from "class-validator";
+import { Expose, Type } from 'class-transformer';
+import { IsObject, ValidateNested, IsArray, IsString } from 'class-validator';
 
 export class SettingsDto {
   @Expose()

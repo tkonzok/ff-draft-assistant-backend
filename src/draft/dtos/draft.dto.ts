@@ -1,10 +1,6 @@
-import { Expose } from "class-transformer";
-import {
-  IsNotEmpty,
-  IsString,
-  IsObject,
-} from "class-validator";
-import {PlayerStatus} from "../../player/player-status.enum";
+import { Expose } from 'class-transformer';
+import { IsNotEmpty, IsString, IsObject } from 'class-validator';
+import { PlayerStatus } from '../../player/player-status.enum';
 
 export class DraftDto {
   @Expose()

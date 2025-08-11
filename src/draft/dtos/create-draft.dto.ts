@@ -1,5 +1,5 @@
-import {IsNotEmpty, IsObject, IsOptional, IsString} from "class-validator";
-import {PlayerStatus} from "../../player/player-status.enum";
+import { IsNotEmpty, IsObject, IsOptional, IsString } from 'class-validator';
+import { PlayerStatus } from '../../player/player-status.enum';
 
 export class CreateDraftDto {
   @IsOptional()
@@ -16,7 +16,7 @@ export class CreateDraftDto {
 
   @IsNotEmpty()
   @IsString()
-  draftPosition: string = "1";
+  draftPosition: string = '1';
 
   @IsNotEmpty()
   @IsString()

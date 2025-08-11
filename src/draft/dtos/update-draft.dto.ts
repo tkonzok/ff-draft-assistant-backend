@@ -1,5 +1,5 @@
-import {IsOptional, IsString} from "class-validator";
-import {PlayerStatus} from "../../player/player-status.enum";
+import { IsOptional, IsString } from 'class-validator';
+import { PlayerStatus } from '../../player/player-status.enum';
 
 export class UpdateDraftDto {
   @IsString()

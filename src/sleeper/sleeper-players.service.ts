@@ -1,11 +1,11 @@
-import {SleeperPlayer} from "./sleeper-player.entity";
-import {MongoRepository} from "typeorm";
-import {InjectRepository} from "@nestjs/typeorm";
-import {Injectable} from "@nestjs/common";
-import axios from "axios";
-import {SleeperPlayerDto} from "./dtos/sleeper-player.dto";
-import {plainToInstance} from "class-transformer";
-import {validate} from "class-validator";
+import { SleeperPlayer } from './sleeper-player.entity';
+import { MongoRepository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable } from '@nestjs/common';
+import axios from 'axios';
+import { SleeperPlayerDto } from './dtos/sleeper-player.dto';
+import { plainToInstance } from 'class-transformer';
+import { validate } from 'class-validator';
 
 @Injectable()
 export class SleeperPlayersService {
@@ -16,25 +16,34 @@ export class SleeperPlayersService {
 
   async updateAll() {
     await this.clearAll();
-    const response = await axios.get("https://api.sleeper.app/v1/players/nfl");
+    const response = await axios.get('https://api.sleeper.app/v1/players/nfl');
     const sleeperPlayersData = response.data;
     if (!sleeperPlayersData) {
       return;
     }
     const playersToSave: SleeperPlayer[] = [];
     for (const [playerId, playerData] of Object.entries(sleeperPlayersData)) {
-      const sleeperPlayerDto: SleeperPlayerDto = plainToInstance(SleeperPlayerDto, playerData)
+      const sleeperPlayerDto: SleeperPlayerDto = plainToInstance(
+        SleeperPlayerDto,
+        playerData,
+      );
       if (sleeperPlayerDto.active === false) {
         continue;
       }
       const validationErrors = await validate(sleeperPlayerDto);
       if (validationErrors.length > 0) {
-        console.error(`Validation failed for player ${playerId}:`, validationErrors);
+        console.error(
+          `Validation failed for player ${playerId}:`,
+          validationErrors,
+        );
         continue;
       }
       sleeperPlayerDto.player_id = playerId;
-      sleeperPlayerDto.team = sleeperPlayerDto.team === "WSH" ? "WAS" : sleeperPlayerDto.team
-      const sleeperPlayer: SleeperPlayer = {...sleeperPlayerDto} as SleeperPlayer
+      sleeperPlayerDto.team =
+        sleeperPlayerDto.team === 'WSH' ? 'WAS' : sleeperPlayerDto.team;
+      const sleeperPlayer: SleeperPlayer = {
+        ...sleeperPlayerDto,
+      } as SleeperPlayer;
       playersToSave.push(sleeperPlayer);
     }
 

@@ -1,5 +1,5 @@
-import {Entity, Column, ObjectIdColumn} from "typeorm";
-import {ObjectId} from "mongodb";
+import { Entity, Column, ObjectIdColumn } from 'typeorm';
+import { ObjectId } from 'mongodb';
 
 @Entity()
 export class SleeperPlayer {
@@ -54,7 +54,7 @@ export class SleeperPlayer {
   @Column({ nullable: true })
   years_exp: number;
 
-  @Column("simple-array")
+  @Column('simple-array')
   fantasy_positions: string[];
 
   @Column({ nullable: true })

@@ -1,10 +1,10 @@
-import { Expose, Type } from "class-transformer";
+import { Expose, Type } from 'class-transformer';
 import {
   IsNotEmpty,
   IsString,
   ValidateNested,
   IsObject,
-} from "class-validator";
+} from 'class-validator';
 
 export class RankingDto {
   @Expose()

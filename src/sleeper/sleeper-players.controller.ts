@@ -1,9 +1,9 @@
-import {Controller, Delete, Get, Param, Post} from "@nestjs/common";
-import {SleeperPlayersService} from "./sleeper-players.service";
-import {SleeperPlayerDto} from "./dtos/sleeper-player.dto";
-import {plainToInstance} from "class-transformer";
+import { Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { SleeperPlayersService } from './sleeper-players.service';
+import { SleeperPlayerDto } from './dtos/sleeper-player.dto';
+import { plainToInstance } from 'class-transformer';
 
-@Controller("sleeper-players")
+@Controller('sleeper-players')
 export class SleeperPlayersController {
   constructor(private readonly sleeperPlayersService: SleeperPlayersService) {}
 
@@ -15,12 +15,12 @@ export class SleeperPlayersController {
     });
   }
 
-  @Get("update")
+  @Get('update')
   async getUpdateAll() {
     return this.sleeperPlayersService.updateAll();
   }
 
-  @Post("update")
+  @Post('update')
   async updateAll() {
     return this.sleeperPlayersService.updateAll();
   }

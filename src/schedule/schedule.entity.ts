@@ -1,5 +1,5 @@
-import {Entity, Column, ObjectIdColumn} from "typeorm";
-import {ObjectId} from "mongodb";
+import { Entity, Column, ObjectIdColumn } from 'typeorm';
+import { ObjectId } from 'mongodb';
 
 @Entity()
 export class Schedule {

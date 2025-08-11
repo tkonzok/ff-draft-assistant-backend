@@ -9,6 +9,7 @@ import { UpdateRankingDto } from './dtos/update-ranking.dto';
 import { dataHpprSf } from '../assets/rankings/data_hppr_sf';
 import { dataDynastySf } from '../assets/rankings/data_dynasty_sf';
 import { SettingsDto } from './dtos/settings.dto';
+import { dataBestballPpr1qb } from '../assets/rankings/data_bestball_ppr_1qb';
 
 @Controller('players')
 export class PlayerController {
@@ -88,8 +89,8 @@ export class PlayerController {
       //   return dataAdvanced1qbRecFlex;
       // case "advancedSfRecFlex":
       //   return dataAdvancedSfRecFlex;
-      // case "bestballPpr1qb":
-      //   return dataBestballPpr1qb;
+      case 'bestballPpr1qb':
+        return dataBestballPpr1qb;
       // case "bestballAdvanced1qb":
       //   return dataBestballPpr1qb;
       default:

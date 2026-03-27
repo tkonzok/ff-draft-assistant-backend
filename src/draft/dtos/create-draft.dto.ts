@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsObject, IsOptional, IsString } from 'class-validator';
+import {
+  IsBoolean,
+  IsNotEmpty,
+  IsObject,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { PlayerStatus } from '../../player/player-status.enum';
 
 export class CreateDraftDto {
@@ -17,6 +23,10 @@ export class CreateDraftDto {
   @IsNotEmpty()
   @IsString()
   draftPosition: string = '1';
+
+  @IsOptional()
+  @IsBoolean()
+  thirdRoundReversal: boolean = false;
 
   @IsNotEmpty()
   @IsString()

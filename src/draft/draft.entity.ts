@@ -17,6 +17,9 @@ export class Draft {
   draftPosition: string;
 
   @Column()
+  thirdRoundReversal: boolean;
+
+  @Column()
   totalParticipants: string;
 
   @Column()

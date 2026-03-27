@@ -1,5 +1,5 @@
 import { Expose } from 'class-transformer';
-import { IsNotEmpty, IsString, IsObject } from 'class-validator';
+import { IsNotEmpty, IsString, IsObject, IsBoolean } from 'class-validator';
 import { PlayerStatus } from '../../player/player-status.enum';
 
 export class DraftDto {
@@ -22,6 +22,10 @@ export class DraftDto {
   @IsNotEmpty()
   @IsString()
   draftPosition: string;
+
+  @Expose()
+  @IsBoolean()
+  thirdRoundReversal: boolean;
 
   @Expose()
   @IsNotEmpty()

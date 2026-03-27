@@ -4,13 +4,9 @@ import { PlayerDto } from './dtos/player.dto';
 import { plainToInstance } from 'class-transformer';
 import { UpdatePlayerDto } from './dtos/update-player.dto';
 import { csvToJson } from '../utils/csv-to-json';
-import { dataHppr1qb } from '../assets/rankings/data_hppr_1qb';
 import { UpdateRankingDto } from './dtos/update-ranking.dto';
-import { dataHpprSf } from '../assets/rankings/data_hppr_sf';
-import { dataDynastySf } from '../assets/rankings/data_dynasty_sf';
 import { SettingsDto } from './dtos/settings.dto';
-import { dataBestballPpr1qb } from '../assets/rankings/data_bestball_ppr_1qb';
-import { dataBestballAdvanced1qb } from '../assets/rankings/data_bestball_advanced_1qb';
+import { dataDynastySf } from '../assets/rankings/data_dynasty_sf';
 
 @Controller('players')
 export class PlayerController {
@@ -78,22 +74,22 @@ export class PlayerController {
 
   private getFile(settings: string) {
     switch (settings) {
-      case 'hppr1qb':
-        return dataHppr1qb;
-      case 'hpprSf':
-        return dataHpprSf;
+      // case 'hppr1qb':
+      //   return dataHppr1qb;
+      // case 'hpprSf':
+      //   return dataHpprSf;
       case 'dynastySf':
         return dataDynastySf;
-      // case "advanced1qb":
+      // case 'advanced1qb':
       //   return dataAdvanced1qb;
       // case "advanced1qbRecFlex":
       //   return dataAdvanced1qbRecFlex;
       // case "advancedSfRecFlex":
       //   return dataAdvancedSfRecFlex;
-      case 'bestballPpr1qb':
-        return dataBestballPpr1qb;
-      case 'bestballAdvanced1qb':
-        return dataBestballAdvanced1qb;
+      // case 'bestballPpr1qb':
+      //   return dataBestballPpr1qb;
+      // case 'bestballAdvanced1qb':
+      //   return dataBestballAdvanced1qb;
       default:
         return undefined;
     }

@@ -1,4 +1,4 @@
-import { IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsOptional, IsString } from 'class-validator';
 import { PlayerStatus } from '../../player/player-status.enum';
 
 export class UpdateDraftDto {
@@ -13,6 +13,10 @@ export class UpdateDraftDto {
   @IsString()
   @IsOptional()
   draftPosition: string;
+
+  @IsOptional()
+  @IsBoolean()
+  thirdRoundReversal: boolean;
 
   @IsString()
   @IsOptional()

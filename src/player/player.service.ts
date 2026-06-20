@@ -4,7 +4,7 @@ import { UpdatePlayerDto } from './dtos/update-player.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MongoRepository } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
-import { SettingsDto } from './dtos/settings.dto';
+import { BulkUpdateRankingDto } from './dtos/bulk-update-ranking.dto';
 
 @Injectable()
 export class PlayerService {
@@ -69,5 +69,29 @@ export class PlayerService {
     }
     await this.playerRepository.save(playersToSave);
     return playersToSave;
+  }
+
+  async updateRankings(
+    bulkUpdateRankingDto: BulkUpdateRankingDto,
+  ): Promise<void> {
+    const { ranking, players } = bulkUpdateRankingDto;
+
+    for (const playerDto of players) {
+      const existingPlayer = await this.playerRepository.findOne({
+        where: { id: playerDto.id },
+      });
+
+      if (existingPlayer) {
+        existingPlayer.rankings = {
+          ...existingPlayer.rankings,
+          [ranking]: {
+            ovr: playerDto.ovr,
+            rank: playerDto.rank,
+            tier: playerDto.tier,
+          },
+        };
+        await this.playerRepository.save(existingPlayer);
+      }
+    }
   }
 }

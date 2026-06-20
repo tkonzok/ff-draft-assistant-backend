@@ -1,10 +1,19 @@
-import { Controller, Get, Body, Post, Query, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Body,
+  Post,
+  Put,
+  Query,
+  Delete,
+} from '@nestjs/common';
 import { PlayerService } from './player.service';
 import { PlayerDto } from './dtos/player.dto';
 import { plainToInstance } from 'class-transformer';
 import { UpdatePlayerDto } from './dtos/update-player.dto';
 import { csvToJson } from '../utils/csv-to-json';
 import { UpdateRankingDto } from './dtos/update-ranking.dto';
+import { BulkUpdateRankingDto } from './dtos/bulk-update-ranking.dto';
 import { SettingsDto } from './dtos/settings.dto';
 import { dataDynastySf } from '../assets/rankings/data_dynasty_sf';
 
@@ -41,6 +50,11 @@ export class PlayerController {
       settings,
     );
     return this.playersService.create(playersToUpdate);
+  }
+
+  @Put('rankings')
+  async updateRankings(@Body() body: BulkUpdateRankingDto): Promise<void> {
+    return this.playersService.updateRankings(body);
   }
 
   @Delete()

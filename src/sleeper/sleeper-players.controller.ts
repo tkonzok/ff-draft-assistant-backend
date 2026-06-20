@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Controller, Delete, Get, Post } from '@nestjs/common';
 import { SleeperPlayersService } from './sleeper-players.service';
 import { SleeperPlayerDto } from './dtos/sleeper-player.dto';
 import { plainToInstance } from 'class-transformer';

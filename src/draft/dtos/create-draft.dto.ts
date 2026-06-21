@@ -1,4 +1,5 @@
 import {
+  IsArray,
   IsBoolean,
   IsNotEmpty,
   IsObject,
@@ -31,6 +32,10 @@ export class CreateDraftDto {
   @IsNotEmpty()
   @IsString()
   totalParticipants: string;
+
+  @IsOptional()
+  @IsArray()
+  pickPositions: string[] = [];
 
   @IsNotEmpty()
   @IsObject()

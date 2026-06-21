@@ -25,7 +25,20 @@ export class DraftService {
   ) {}
 
   async getAll(): Promise<Draft[]> {
-    return this.draftRepository.find();
+    const drafts = await this.draftRepository.find();
+
+    for (const draft of drafts) {
+      if (!draft.pickPositions || draft.pickPositions.length === 0) {
+        draft.pickPositions = this.calculatePickPositions(
+          parseInt(draft.draftPosition || '1'),
+          parseInt(draft.totalParticipants || '12'),
+          draft.thirdRoundReversal || false,
+        );
+        await this.draftRepository.save(draft);
+      }
+    }
+
+    return drafts;
   }
 
   async create(partialCreateDraftDto: Partial<CreateDraftDto>): Promise<Draft> {
@@ -34,9 +47,17 @@ export class DraftService {
     players.forEach((player) => {
       playerStates[player.id.toString()] = PlayerStatus.AVAILABLE;
     });
+
+    const pickPositions = this.calculatePickPositions(
+      parseInt(partialCreateDraftDto.draftPosition || '1'),
+      parseInt(partialCreateDraftDto.totalParticipants || '12'),
+      partialCreateDraftDto.thirdRoundReversal || false,
+    );
+
     const draftObject: Partial<CreateDraftDto> = {
       ...partialCreateDraftDto,
       playerStates,
+      pickPositions,
     };
     const fullCreateDraftDto = plainToInstance(CreateDraftDto, draftObject);
     const errors = await validate(fullCreateDraftDto);
@@ -60,8 +81,31 @@ export class DraftService {
         [key]: currentPlayerState,
       });
     }
+
+    let pickPositions = draft.pickPositions;
+    if (updateDraftDto.pickPositions) {
+      pickPositions = updateDraftDto.pickPositions;
+    } else {
+      const newDraftPosition =
+        updateDraftDto.draftPosition ?? draft.draftPosition;
+      const newThirdRoundReversal =
+        updateDraftDto.thirdRoundReversal ?? draft.thirdRoundReversal;
+
+      if (
+        newDraftPosition !== draft.draftPosition ||
+        newThirdRoundReversal !== draft.thirdRoundReversal
+      ) {
+        pickPositions = this.calculatePickPositions(
+          parseInt(newDraftPosition),
+          parseInt(draft.totalParticipants),
+          newThirdRoundReversal,
+        );
+      }
+    }
+
     Object.assign(draft, {
       ...updateDraftDto,
+      pickPositions,
       playerStates: {
         ...draft.playerStates,
         ...updateDraftDto.playerStates,
@@ -108,5 +152,50 @@ export class DraftService {
       }
     }
     return await this.draftRepository.save(draft);
+  }
+
+  private calculatePickPositions(
+    draftPosition: number,
+    totalParticipants: number,
+    thirdRoundReversal: boolean,
+  ): string[] {
+    const picks: string[] = [];
+    let round = 1;
+    let pick = 0;
+
+    while (pick < 400) {
+      const isOddRound = round % 2 === 1;
+
+      if (thirdRoundReversal && round >= 3) {
+        // With third-round reversal: rounds 3+ use a second snake
+        // Round 3 starts reversed (position 12 picks first), round 4 normal again, etc.
+        const adjustedRound = round - 2;
+        const isReversed = adjustedRound % 2 === 1;
+
+        if (isReversed) {
+          // Reversed round: pick from the end
+          pick =
+            (round - 1) * totalParticipants +
+            (totalParticipants - draftPosition + 1);
+        } else {
+          // Normal round
+          pick = (round - 1) * totalParticipants + draftPosition;
+        }
+      } else {
+        if (isOddRound) {
+          pick = (round - 1) * totalParticipants + draftPosition;
+        } else {
+          pick =
+            (round - 1) * totalParticipants +
+            (totalParticipants - draftPosition + 1);
+        }
+      }
+
+      if (pick >= 400) break;
+      picks.push(pick.toString());
+      round++;
+    }
+
+    return picks;
   }
 }

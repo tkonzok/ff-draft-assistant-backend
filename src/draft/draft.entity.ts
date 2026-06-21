@@ -23,5 +23,8 @@ export class Draft {
   totalParticipants: string;
 
   @Column()
+  pickPositions: string[] = [];
+
+  @Column()
   playerStates: Record<string, PlayerStatus>;
 }

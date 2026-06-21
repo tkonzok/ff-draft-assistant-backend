@@ -1,4 +1,4 @@
-import { IsBoolean, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsBoolean, IsOptional, IsString } from 'class-validator';
 import { PlayerStatus } from '../../player/player-status.enum';
 
 export class UpdateDraftDto {
@@ -21,6 +21,10 @@ export class UpdateDraftDto {
   @IsString()
   @IsOptional()
   totalParticipants: string;
+
+  @IsOptional()
+  @IsArray()
+  pickPositions: string[];
 
   @IsOptional()
   playerStates: Record<string, PlayerStatus>;
